@@ -13,10 +13,7 @@ import tacos.web.assemblers.TacoModelAssembler;
 import tacos.web.entities.Taco;
 import tacos.web.repository.TacoRepository;
 import org.springframework.hateoas.CollectionModel;
-import tacos.web.services.JmsTacoReceiverService;
-import tacos.web.services.RabbitMQTacoMessagingService;
-import tacos.web.services.TacoMessagingService;
-import tacos.web.services.TacoReceiverService;
+import tacos.web.services.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,12 +27,14 @@ public class DesignTacoController {
     private final TacoMessagingService tacoMessagingService;
     private final TacoReceiverService tacoReceiverService;
     private final RabbitMQTacoMessagingService rabbitMQTacoMessagingService;
+    private final KafkaTacoMessagingService kafkaTacoMessagingService;
 
-    public DesignTacoController(TacoRepository tacoRepository, TacoMessagingService tacoMessagingService, TacoReceiverService tacoReceiverService, RabbitMQTacoMessagingService rabbitMQTacoMessagingService) {
+    public DesignTacoController(TacoRepository tacoRepository, TacoMessagingService tacoMessagingService, TacoReceiverService tacoReceiverService, RabbitMQTacoMessagingService rabbitMQTacoMessagingService, KafkaTacoMessagingService kafkaTacoMessagingService) {
         this.tacoRepository = tacoRepository;
         this.tacoMessagingService = tacoMessagingService;
         this.tacoReceiverService = tacoReceiverService;
         this.rabbitMQTacoMessagingService = rabbitMQTacoMessagingService;
+        this.kafkaTacoMessagingService = kafkaTacoMessagingService;
     }
 
     @GetMapping("/{id}")
@@ -140,5 +139,11 @@ public class DesignTacoController {
     public ResponseEntity<Object> getMessageRabbitMQ() {
         var result = rabbitMQTacoMessagingService.receiveMessage();
         return ResponseEntity.ok().body(result);
+    }
+
+    @PostMapping(path = "/sendTacoKafka")
+    public ResponseEntity<Object> sendMessageKafka() {
+        kafkaTacoMessagingService.sendMessage("newMessage");
+        return ResponseEntity.ok().build();
     }
 }

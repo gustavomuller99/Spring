@@ -1,8 +1,10 @@
 package tacos;
 
+import com.rabbitmq.client.Command;
 import jakarta.jms.Destination;
 import org.apache.activemq.artemis.jms.client.ActiveMQQueue;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import tacos.web.entities.Ingredient;
+import tacos.web.integration.FileWriterGateway;
 import tacos.web.repository.IngredientRepository;
 
 import java.util.Arrays;
