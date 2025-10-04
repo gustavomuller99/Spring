@@ -49,8 +49,8 @@ public class RabbitMQTacoMessagingService {
         return (String) rabbitTemplate.receiveAndConvert("tacocloud.order");
     }
 
-    @RabbitListener(queues = "tacocloud.order")
-    public void receiveMessageListener(String m) {
-        m.toLowerCase();
-    }
+//    @RabbitListener(queues = "tacocloud.order")
+//    public void receiveMessageListener(String m) {
+//        m.toLowerCase();
+//    }
 }

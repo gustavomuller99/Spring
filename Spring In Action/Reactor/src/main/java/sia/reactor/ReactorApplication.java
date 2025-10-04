@@ -21,8 +21,6 @@ public class ReactorApplication {
             Flux<String> fruitFlux = Flux
                     .just("Apple", "Orange", "Grape", "Banana", "Strawberry");
 
-            fruitFlux.subscribe(System.out::println);
-
             StepVerifier.create(fruitFlux)
                     .expectNext("Apple")
                     .expectNext("Orange")
