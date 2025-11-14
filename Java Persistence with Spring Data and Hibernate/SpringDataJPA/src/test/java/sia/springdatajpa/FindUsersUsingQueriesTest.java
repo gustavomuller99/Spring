@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FindUsersUsingQueriesTeste extends SpringDataJpaApplicationTests {
+public class FindUsersUsingQueriesTest extends SpringDataJpaApplicationTests {
 
     @Test
     void testFindAll() {

@@ -1,9 +1,12 @@
 package sia.springdatajpa.repositories;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.util.Streamable;
 import sia.springdatajpa.model.Projection;
 import sia.springdatajpa.model.User;
@@ -42,4 +45,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<Projection.UsernameOnly> findByEmail(String email);
 
     <T> List<T> findByEmail(String username, Class<T> type);
+
+    // modifying
+    @Modifying
+    @Transactional
+    @Query("update User u set u.level = ?2 where u.level = ?1")
+    int updateLevel(int oldLevel, int newLevel);
+
+    @Transactional
+    int deleteByLevel(int level);
+
+    @Transactional
+    @Modifying
+    @Query("delete from User u where u.level = ?1")
+    int deleteBulkByLevel(int level);
+
 }
