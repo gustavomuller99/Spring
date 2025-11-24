@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-import sia.generator.model.Item;
+import sia.subselect.model.Item;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

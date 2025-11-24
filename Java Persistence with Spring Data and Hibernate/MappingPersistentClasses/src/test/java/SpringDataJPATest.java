@@ -3,8 +3,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import sia.generator.model.Item;
 import sia.generator.repositories.ItemRepository;
+import sia.subselect.model.Item;
 
 import java.util.Date;
 import java.util.List;

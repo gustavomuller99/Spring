@@ -46,7 +46,7 @@ public class SpringDataConfiguration {
         properties.put("hibernate.hbm2ddl.auto", "create");
         localContainerEntityManagerFactoryBean.setJpaProperties(properties);
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-        localContainerEntityManagerFactoryBean.setPackagesToScan("sia.generator.model");
+        localContainerEntityManagerFactoryBean.setPackagesToScan("sia.generator.model", "sia.subselect.model");
         return localContainerEntityManagerFactoryBean;
     }
 
